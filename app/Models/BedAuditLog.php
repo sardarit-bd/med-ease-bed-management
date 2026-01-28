@@ -10,18 +10,18 @@ class BedAuditLog extends Model
 {
     use HasUuids;
 
-    public $timestamps = false; 
+    public $timestamps = false;
 
     protected $fillable = [
         'bed_id',
-        'user_id',       
+        'user_id',
         'previous_status',
         'new_status',
-        'created_at',    
+        'changed_at',    
     ];
 
     protected $casts = [
-        'created_at' => 'datetime',
+        'changed_at' => 'datetime',
     ];
 
     /**

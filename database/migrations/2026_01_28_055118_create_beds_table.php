@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('beds', function (Blueprint $table) {
-            $table->uuid();
+            $table->uuid('id')->primary();
             $table->foreignUuid('service_id')->constrained()->cascadeOnDelete();
             $table->string('label');
             $table->string('status')->default('available')->index();     

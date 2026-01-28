@@ -12,13 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('bed_audit_logs', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->foreignUuid('bed_id')->constrained()->cascadeOnDelete();
-            $table->foreignUuid('user_id')->nullable();
-            
-            $table->string('previous_status');
+            $table->foreignUuid('user_id')->nullable()->constrained('users')->cascadeOnDelete();
+            $table->string('previous_status')->nullable();
             $table->string('new_status');
-            $table->timestamp('changed_at');
+            $table->timestamp('changed_at')->useCurrent();
+
+            $table->index('bed_id');
+            $table->index('changed_at');
             
         });
     }

@@ -19,7 +19,7 @@ class BedObserver
                 'user_id' => Auth::id(),
                 'previous_status' => $bed->getOriginal('status'),
                 'new_status' => $bed->status,
-                'created_at' => now(),
+                'changed_at' => now(),
             ]);
 
             $bed->last_status_change_at = now();
@@ -36,7 +36,7 @@ class BedObserver
             'user_id' => Auth::id() ?? null,
             'previous_status' => null,
             'new_status' => $bed->status,
-            'created_at' => now(),
+            'changed_at' => now(),
         ]);
     }
 
