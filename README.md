@@ -6,7 +6,7 @@ A professional, REST API for managing hospital beds, patient admissions, and fac
 
 ## 🛠 Tech Stack
 
-* **Framework:** Laravel 11
+* **Framework:** Laravel 12.x
 * **Language:** PHP 8.2+
 * **Database:** MySQL 8.0+
 
