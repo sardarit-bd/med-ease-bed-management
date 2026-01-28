@@ -26,29 +26,43 @@ class Bed extends Model
         'last_status_change_at' => 'datetime',
     ];
 
+    /**
+     * The Service (Department) this bed belongs to.
+     */
     public function service(): BelongsTo
     {
         return $this->belongsTo(Service::class);
     }
 
+    /**
+     * Full history of everyone who has ever used this bed.
+     */
     public function admissions(): HasMany
     {
         return $this->hasMany(Admission::class);
     }
-    
+
+    /**
+     * Audit trail of status changes
+     */
+    public function auditLogs(): HasMany
+    {
+        return $this->hasMany(BedAuditLog::class);
+    }
+
     public function activeAdmission(): HasOne
     {
         return $this->hasOne(Admission::class)
             ->where('status', 'active')
-            ->latestOfMany(); 
+            ->latestOfMany();
     }
 
     public function futureAdmission(): HasOne
     {
         return $this->hasOne(Admission::class)
             ->where('status', 'planned')
-            ->where('expected_arrival_at', '>', now())
-            ->orderBy('expected_arrival_at', 'asc'); 
+            ->where('expected_arrival_at', '>', now()) 
+            ->orderBy('expected_arrival_at', 'asc');
     }
 
     public function scopeOccupied($query)
