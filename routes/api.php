@@ -9,4 +9,8 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
-Route::apiResource('/beds', BedController::class)->only('index');
+// routs for bed
+Route::apiResource('/beds', BedController::class);
+Route::post('/beds/{id}/assign', [BedController::class, 'assignPatient']);
+Route::post('/beds/{id}/discharge', [BedController::class, 'dischargePatient']);
+Route::post('/beds/{id}/status', [BedController::class, 'updateStatus']);
