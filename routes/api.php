@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\BedController;
+use App\Http\Controllers\Api\PatientController;
 use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\FacilityController;
 
@@ -24,3 +25,7 @@ Route::apiResource('facilities', FacilityController::class);
 
 // services
 Route::apiResource('services', ServiceController::class);
+
+
+// patients
+Route::apiResource('patients', PatientController::class);
